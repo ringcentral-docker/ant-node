@@ -3,9 +3,9 @@ FROM openjdk:8 as base
 
 
 # install node
-ENV NODE_VERSION 10
+ENV NODE_VERSION 11
 RUN apt-get install -y curl \
-  && curl -sL https://deb.nodesource.com/setup_10.15 | bash - \
+  && curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - \
   && apt-get install -y nodejs \
   && curl -L https://www.npmjs.com/install.sh | sh
 
