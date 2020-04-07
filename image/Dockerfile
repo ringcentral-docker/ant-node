@@ -9,7 +9,8 @@ RUN apt-get install -y curl \
   && apt-get install -y nodejs \
   && curl -L https://www.npmjs.com/install.sh | sh
 
-RUN npm install -g yarn
+RUN npm install -g yarn \
+  && npm install -g @google/clasp
 
 #install ant
 ENV ANT_VERSION 1.10.5
