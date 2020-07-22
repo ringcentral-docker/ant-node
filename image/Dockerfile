@@ -13,7 +13,7 @@ RUN npm install -g yarn \
   && npm install -g @google/clasp
 
 #install ant
-ENV ANT_VERSION 1.10.7
+ENV ANT_VERSION 1.10.8
 RUN cd && \
     wget -q http://www.us.apache.org/dist//ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz && \
     tar -xzf apache-ant-${ANT_VERSION}-bin.tar.gz && \
