@@ -1,0 +1,26 @@
+name: Build ant-node
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      # '*' matches any character except '/'
+      - 'image/*'
+      - '.github/workflows/*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Build & Push Image
+        run: |
+          cd image
+          IMAGE_NAME=ringcentral/ant-node
+          VERSION="$(awk -F ' '  '/ENV NODE_VERSION/ {print $3}' Dockerfile)"
+          docker build --tag ${IMAGE_NAME} --file Dockerfile .
+          docker tag "${IMAGE_NAME}" "${IMAGE_NAME}:${VERSION}"
+          docker tag "${IMAGE_NAME}" "${IMAGE_NAME}:latest"
+
+          docker push "${IMAGE_NAME}:${VERSION}"
+          docker push "${IMAGE_NAME}:latest"
